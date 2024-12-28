@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konwerter Systemów Liczbowych</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .converter {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .converter h1 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .converter label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .converter input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .converter button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .converter button:hover {
+            background-color: #0056b3;
+        }
+        .converter .output {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="converter">
+        <h1>Konwerter Systemów Liczbowych</h1>
+        <label for="number">Wprowadź liczbę:</label>
+        <input type="text" id="number" placeholder="np. 101 (w systemie binarnym)">
+
+        <label for="from-base">Z systemu:</label>
+        <input type="number" id="from-base" placeholder="np. 2" min="2">
+
+        <label for="to-base">Na system:</label>
+        <input type="number" id="to-base" placeholder="np. 10" min="2">
+
+        <button onclick="convertNumber()">Konwertuj</button>
+
+        <div class="output" id="output"></div>
+    </div>
+
+    <script>
+        function convertNumber() {
+            const number = document.getElementById('number').value.trim();
+            const fromBase = parseInt(document.getElementById('from-base').value.trim());
+            const toBase = parseInt(document.getElementById('to-base').value.trim());
+            const outputDiv = document.getElementById('output');
+
+            if (!number || isNaN(fromBase) || isNaN(toBase)) {
+                outputDiv.textContent = 'Proszę podać prawidłowe dane we wszystkich polach.';
+                return;
+            }
+
+            try {
+                const decimalValue = parseInt(number, fromBase);
+                if (isNaN(decimalValue)) {
+                    outputDiv.textContent = 'Nieprawidłowa liczba dla określonego systemu.';
+                    return;
+                }
+
+                const convertedValue = decimalValue.toString(toBase);
+                outputDiv.textContent = `Wartość po konwersji: ${convertedValue}`;
+            } catch (error) {
+                outputDiv.textContent = 'Wystąpił błąd podczas konwersji.';
+            }
+        }
+    </script>
+</body>
+</html>
