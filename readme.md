@@ -74,3 +74,6 @@ Aplikacja "Konwerter Systemów Liczbowych" pozwala na konwersję liczb pomiędzy
 - Wartości wprowadzane do pól "Z systemu" i "Na system" muszą być liczbami całkowitymi większymi lub równymi 2.
 - Systemy liczbowe powyżej 36 nie są obsługiwane (z powodu ograniczeń w JavaScript `toString()` i `parseInt()`).
 
+## Autor
+
+Maciej B
